@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>H5 Page</h1>
+    <script>
+      function onBridgeReady() {
+        WeixinJSBridge.invoke(
+          "getBrandWCPayRequest",
+          {
+            appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
+            timeStamp: "1710465486", //Timestamp, number of seconds since 1970
+            nonceStr: "ghLXVIgZn7OBndhNpDokvJqYt2L0uIYi", //Random string
+            package: "prepay_id=wx150917456684984e8893911711b03b0000",
+            signType: "RSA", //WeChat signature method:
+            paySign:
+              "mpzbRzx3gel3+9tKu3aBn5AZtW/hRblD0zs+bHFa0DNCQ9247bENhVtiUIgOyU/sgXsKZwUIj3lum95n6TzJ1tkm3PaaKJr3GgOldDBfAhBlLMyetWvfiJoRXXHuPgKeWkvNGdcvxxAChOhO5RVfzc5HGsJ7hoyboxdiEa7q0zdsliVWZgy4Q3Hwr9xPV672eo7IwKQttiG67TORmGcHU75fk7Ok7anw1xda0qV0ThCLZRuU5HFbX+lPMBldCOWoI8vYt3ftTON+DZqqGrO4F4h/QPMK/poInJ9G7NVntaNpq1f69y1n7LGbX7kiyRUyaZX4hkEcFj1K2TpDi5Jp8w==", //WeChat signature
+          },
+          function (res) {
+            if (res.err_msg == "get_brand_wcpay_request:ok") {
+            } // The above method can be used to judge the value returned from the frontend. WeChat team reminds you that res.err_msg will return OK after users make payment successfully, but this value is not guaranteed to be absolute reliable.
+          }
+        );
+      }
+      if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+          document.addEventListener(
+            "WeixinJSBridgeReady",
+            onBridgeReady,
+            false
+          );
+        } else if (document.attachEvent) {
+          document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+          document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+        }
+      } else {
+        onBridgeReady();
+      }
+    </script>
+  </body>
+</html>
