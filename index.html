@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paying to Canadia Bank Merchant</title>
+    <title>Paying to Canadia bank merchant</title>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -14,65 +14,66 @@
     <div class="container mt-5">
       <div class="card col-md-6 mx-auto">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">Enter Amount</h2>
-          <form action="#" method="post" id="amountForm">
-            <div class="form-group">
-              <label for="amount">Amount:</label>
-              <input
-                type="number"
-                class="form-control"
-                id="amount"
-                name="amount"
-                required
-              />
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">
-              Pay Now
-            </button>
-          </form>
+          <h2 class="card-title text-center mb-4">Canadia bank merchant</h2>
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              name="amount"
+              required
+            />
+          </div>
+          <button id="pay" class="btn btn-primary btn-block">Pay</button>
         </div>
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-      $(document).ready(function () {
-        $("#amountForm").submit(function (event) {
-          event.preventDefault();
-          if (typeof WeixinJSBridge == "undefined") {
-            if (document.addEventListener) {
-              document.addEventListener(
-                "WeixinJSBridgeReady",
-                onBridgeReady,
-                false
-              );
-            } else if (document.attachEvent) {
-              document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-              document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-            }
-          } else {
-            onBridgeReady();
-          }
-        });
-
+      function onBridgeReady() {
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
             appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
-            timeStamp: "1711939038", //Timestamp, number of seconds since 1970
-            nonceStr: "Emk4SIZ1mc48hdAjgESSPDUmMbUrXkdL", //Random string
-            package: "prepay_id=wx0110370133936432a84a2476b057250000",
+            timeStamp: "1711359975", //Timestamp, number of seconds since 1970
+            nonceStr: "90T9bsKG9vcCmJ7HPck1JO3gHS6rp4c1", //Random string
+            package: "prepay_id=wx251745559632994ebd596e601c306b0000",
             signType: "RSA", //WeChat signature method:
             paySign:
-              "BLy6yUxZ106R6pvaH2feuy4lTQkXnwafZeUDAd2A/q4a/eMxmvUMh1d8L+Frag8MQecl3l8nk+CXjOf+o9T2Lgd8T1yPWv+OmEwMccFc4D4CHiBMrOdGCqsn7KioIx7+vL2YT8hXbHViNGr0MEXsYMmPbd4HJYmzGk+Qhfbt6edgZuTI65PQT9gYy5DrK0TFwWlQ37CPKHowtHcs/cXNVU60YszEgLlTC+jM8tttwNdh1rMEjV0IzXG3KY8/xjtCCW6uckoTHM47TjE2jp+p6fGRml/jwPYC6L3nvuZZcgAOEb6LWsorS5CwsYELaDWCkl/GI+M3T/a8FYwpr/bdLA==", //WeChat signature
+              "zYYu4071MFnde33kUysZzNeWUJEqT8UcsI2cjmw0roA8hW/zDG1XcZ8MTVlCE7Z8rUcJeiynSZVElwwh35X744igfSIt6QAU9LvkrZXioHR4nJ/eQwbB7VypiyhmDvqszznHRNBW3lZDmWGVIKfHtuJdlxPwiGytLbZMBVYPbB+4Q9zspaw8oraN+IK0qmGXrciB5911he5GzGACOz4UoCe/jPbucrRqvqsw/Q1G3lBJGPWgi5dOmlGcWxOozKRtyLbqg4eX+Jmt8tLvp1JlSGFysMA0cV6nwHRn6kYmaRtMm79DarsZp1RKJGgZXbWam+RbPqZE9DjnMDuYkErkCQ==", //WeChat signature
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
             } // The above method can be used to judge the value returned from the frontend. WeChat team reminds you that res.err_msg will return OK after users make payment successfully, but this value is not guaranteed to be absolute reliable.
           }
         );
-      });
+      }
+
+      document.getElementById("pay").addEventListener("click", pay);
+      function pay() {
+        var amount = document.getElementById("amount").value;
+        console.log("Pay amount:", amount);
+        if (amount == 0) {
+          alert("Please enter a valid amount");
+          return;
+        }
+
+        if (typeof WeixinJSBridge == "undefined") {
+          if (document.addEventListener) {
+            document.addEventListener(
+              "WeixinJSBridgeReady",
+              onBridgeReady,
+              false
+            );
+          } else if (document.attachEvent) {
+            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+          }
+        } else {
+          onBridgeReady();
+        }
+      }
     </script>
   </body>
 </html>
