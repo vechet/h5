@@ -3,11 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Paying to Canadia bank merchant</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
   </head>
   <body>
-    <h1>H5 Page</h1>
-    <button id="pay">Pay</button>
+    <div class="container mt-5">
+      <div class="card col-md-6 mx-auto">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Canadia bank merchant</h2>
+          <form action="#" method="post" id="amountForm">
+            <div class="form-group">
+              <label for="amount">Amount:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="amount"
+                name="amount"
+                required
+              />
+            </div>
+            <button id="pay" class="btn btn-primary btn-block">Pay</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <script>
       function onBridgeReady() {
@@ -29,9 +52,15 @@
         );
       }
 
-      var x = document.getElementById("pay");
-      x.addEventListener("click", pay);
+      document.getElementById("pay").addEventListener("click", pay);
       function pay() {
+        var amount = document.getElementById("amount").value;
+        console.log("Pay amount:", amount);
+        if (amount == 0) {
+          alert("Please enter a valid amount");
+          return;
+        }
+
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
             document.addEventListener(
