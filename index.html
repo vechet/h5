@@ -9,8 +9,6 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container mt-5">
@@ -35,46 +33,46 @@
         </div>
       </div>
     </div>
+
     <script>
-      $(document).ready(function () {
-        $("#amountForm").submit(function (event) {
+      document
+        .getElementById("amountForm")
+        .addEventListener("submit", function (event) {
           event.preventDefault();
-          var amount = $("#amount").val();
+          var amount = document.getElementById("amount").value;
           console.log("Pay amount:", amount);
         });
-
-        WeixinJSBridge.invoke(
-          "getBrandWCPayRequest",
-          {
-            appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
-            timeStamp: "1711939038", //Timestamp, number of seconds since 1970
-            nonceStr: "Emk4SIZ1mc48hdAjgESSPDUmMbUrXkdL", //Random string
-            package: "prepay_id=wx0110370133936432a84a2476b057250000",
-            signType: "RSA", //WeChat signature method:
-            paySign:
-              "BLy6yUxZ106R6pvaH2feuy4lTQkXnwafZeUDAd2A/q4a/eMxmvUMh1d8L+Frag8MQecl3l8nk+CXjOf+o9T2Lgd8T1yPWv+OmEwMccFc4D4CHiBMrOdGCqsn7KioIx7+vL2YT8hXbHViNGr0MEXsYMmPbd4HJYmzGk+Qhfbt6edgZuTI65PQT9gYy5DrK0TFwWlQ37CPKHowtHcs/cXNVU60YszEgLlTC+jM8tttwNdh1rMEjV0IzXG3KY8/xjtCCW6uckoTHM47TjE2jp+p6fGRml/jwPYC6L3nvuZZcgAOEb6LWsorS5CwsYELaDWCkl/GI+M3T/a8FYwpr/bdLA==", //WeChat signature
-          },
-          function (res) {
-            if (res.err_msg == "get_brand_wcpay_request:ok") {
-            } // The above method can be used to judge the value returned from the frontend. WeChat team reminds you that res.err_msg will return OK after users make payment successfully, but this value is not guaranteed to be absolute reliable.
-          }
-        );
-
-        if (typeof WeixinJSBridge == "undefined") {
-          if (document.addEventListener) {
-            document.addEventListener(
-              "WeixinJSBridgeReady",
-              onBridgeReady,
-              false
-            );
-          } else if (document.attachEvent) {
-            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-          }
-        } else {
-          onBridgeReady();
+      WeixinJSBridge.invoke(
+        "getBrandWCPayRequest",
+        {
+          appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
+          timeStamp: "1711939038", //Timestamp, number of seconds since 1970
+          nonceStr: "Emk4SIZ1mc48hdAjgESSPDUmMbUrXkdL", //Random string
+          package: "prepay_id=wx0110370133936432a84a2476b057250000",
+          signType: "RSA", //WeChat signature method:
+          paySign:
+            "BLy6yUxZ106R6pvaH2feuy4lTQkXnwafZeUDAd2A/q4a/eMxmvUMh1d8L+Frag8MQecl3l8nk+CXjOf+o9T2Lgd8T1yPWv+OmEwMccFc4D4CHiBMrOdGCqsn7KioIx7+vL2YT8hXbHViNGr0MEXsYMmPbd4HJYmzGk+Qhfbt6edgZuTI65PQT9gYy5DrK0TFwWlQ37CPKHowtHcs/cXNVU60YszEgLlTC+jM8tttwNdh1rMEjV0IzXG3KY8/xjtCCW6uckoTHM47TjE2jp+p6fGRml/jwPYC6L3nvuZZcgAOEb6LWsorS5CwsYELaDWCkl/GI+M3T/a8FYwpr/bdLA==", //WeChat signature
+        },
+        function (res) {
+          if (res.err_msg == "get_brand_wcpay_request:ok") {
+          } // The above method can be used to judge the value returned from the frontend. WeChat team reminds you that res.err_msg will return OK after users make payment successfully, but this value is not guaranteed to be absolute reliable.
         }
-      });
+      );
+
+      if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+          document.addEventListener(
+            "WeixinJSBridgeReady",
+            onBridgeReady,
+            false
+          );
+        } else if (document.attachEvent) {
+          document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+          document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+        }
+      } else {
+        onBridgeReady();
+      }
     </script>
   </body>
 </html>
