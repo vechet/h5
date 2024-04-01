@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paying to Canadia Bank Merchant</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="card col-md-6 mx-auto">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Enter Amount</h2>
+          <form action="#" method="post" id="amountForm">
+            <div class="form-group">
+              <label for="amount">Amount:</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="amount"
+                  name="amount"
+                  required
+                  placeholder="Enter amount"
+                  aria-label="Amount"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">$</span>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Pay Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#amountForm").submit(function (event) {
+          event.preventDefault();
+          var amount = $("#amount").val();
+          console.log("Pay amount:", amount);
+          // Add your payment processing logic here
+        });
+      });
+    </script>
+  </body>
+</html>
