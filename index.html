@@ -12,22 +12,28 @@
   </head>
   <body>
     <div class="container mt-5">
-      <div class="card col-md-6 mx-auto">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Canadia bank merchant</h2>
-          <div class="form-group">
-            <label for="amount">Amount:</label>
-            <input
-              type="number"
-              class="form-control"
-              id="amount"
-              name="amount"
-              required
-            />
+      <div class="mb-5">
+        <p class="text-center mb-0">You're about to pay</p>
+        <h5 class="text-center">Canadia bank merchant</h5>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            id="amount"
+            name="amount"
+            required
+            placeholder="Enter amount"
+            aria-label="Amount"
+            aria-describedby="basic-addon2"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">$</span>
           </div>
-          <button id="pay" class="btn btn-primary btn-block">Pay</button>
         </div>
       </div>
+      <button id="pay" class="btn btn-primary btn-block" disabled>Pay</button>
     </div>
 
     <script>
@@ -50,14 +56,10 @@
         );
       }
 
+      //submit payment
       document.getElementById("pay").addEventListener("click", pay);
       function pay() {
         var amount = document.getElementById("amount").value;
-        console.log("Pay amount:", amount);
-        if (amount == 0) {
-          alert("Please enter a valid amount");
-          return;
-        }
 
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
@@ -74,6 +76,16 @@
           onBridgeReady();
         }
       }
+
+      //validate amount
+      document.getElementById("amount").addEventListener("input", function () {
+        var amount = document.getElementById("amount").value;
+        if (amount > 0) {
+          document.getElementById("pay").removeAttribute("disabled");
+        } else {
+          document.getElementById("pay").setAttribute("disabled", "disabled");
+        }
+      });
     </script>
   </body>
 </html>
