@@ -50,6 +50,7 @@
     <script>
       //focus on amount input
       document.getElementById("amount").focus();
+      document.getElementById("amount").blur();
 
       //validate amount
       document.getElementById("amount").addEventListener("input", function () {
@@ -61,17 +62,25 @@
         }
       });
 
+      var amount = document.getElementById("amount").value;
+      var appId = "wxdff39e214f645db5";
+      var timeStamp = "1711359975";
+      var nonceStr = "90T9bsKG9vcCmJ7HPck1JO3gHS6rp4c1";
+      var prepayId = "wx251745559632994ebd596e601c306b0000";
+      var signType = "RSA";
+      var paySign =
+        "zYYu4071MFnde33kUysZzNeWUJEqT8UcsI2cjmw0roA8hW/zDG1XcZ8MTVlCE7Z8rUcJeiynSZVElwwh35X744igfSIt6QAU9LvkrZXioHR4nJ/eQwbB7VypiyhmDvqszznHRNBW3lZDmWGVIKfHtuJdlxPwiGytLbZMBVYPbB+4Q9zspaw8oraN+IK0qmGXrciB5911he5GzGACOz4UoCe/jPbucrRqvqsw/Q1G3lBJGPWgi5dOmlGcWxOozKRtyLbqg4eX+Jmt8tLvp1JlSGFysMA0cV6nwHRn6kYmaRtMm79DarsZp1RKJGgZXbWam+RbPqZE9DjnMDuYkErkCQ=="; //WeChat signature
+
       function onBridgeReady() {
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
-            appId: "wxdff39e214f645db5",
-            timeStamp: "1712048050",
-            nonceStr: "fnhXlDRhMOqOwMAZn8CGxxcUwcGgJYKy",
-            package: "prepay_id=wx021654009759102ff41217f71093410000",
-            signType: RSA,
-            paySign:
-              "GdprezckZsUsEi3MmqbthqWesuFlfAeRsjYU7GDjhmX25wWuUdEYYJjX3GafL9qxy0lQBHkBlI+2MYTMK/5ur+8xCHO+XJAKjEWO0dAYKrwnTVXgpn/epMeNDkuSZTd2oOACt1U1WlUZH+WK59zVr+9C5HvHzPXnvLnbva+OBZ/DSmRhDABq3TH5eMcmOSBFvb2qFPlmRj6j5+V+Mz9vi9NP8LTbGaXiif0wK15xj85+4i+NZfYICAd9eBmGVypl9NBfRsZi9+ehoxaPadDa6pWFTFZdHHrQnY4dvRmZRfubAMbCcZggvT1G18S+jtIfLSHzWpi/eN5ORn41LNfjNw==",
+            appId: appId,
+            timeStamp: timeStamp,
+            nonceStr: nonceStr,
+            package: "prepay_id=" + prepayId,
+            signType: signType,
+            paySign: paySign,
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
