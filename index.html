@@ -54,6 +54,8 @@
 
     <script>
       //variables
+      var amount = document.getElementById("amount").value;
+      var userId = "oEd0BwrC72_318e7AnQlzl0hnSYo";
       var appId = "wxdff39e214f645db5";
       var timeStamp = "1712126395";
       var nonceStr = "eVIKoxmtEKg5KOqo7r0QwRim7ZDfglh9";
@@ -98,30 +100,80 @@
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
         //create order
-        prepayId = OrderPlaceApi();
+        prepayId = OrderPlacementApi(amount, userId);
         if (prepayId == "") {
           return;
         }
 
-        if (typeof WeixinJSBridge == "undefined") {
-          if (document.addEventListener) {
-            document.addEventListener(
-              "WeixinJSBridgeReady",
-              onBridgeReady,
-              false
-            );
-          } else if (document.attachEvent) {
-            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-          }
-        } else {
-          onBridgeReady();
-        }
+        // if (typeof WeixinJSBridge == "undefined") {
+        //   if (document.addEventListener) {
+        //     document.addEventListener(
+        //       "WeixinJSBridgeReady",
+        //       onBridgeReady,
+        //       false
+        //     );
+        //   } else if (document.attachEvent) {
+        //     document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+        //     document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+        //   }
+        // } else {
+        //   onBridgeReady();
+        // }
       });
 
-      const OrderPlaceApi = () => {
-        return "wx03143945650823c46d6545e03ba3660000";
+      const OrderPlacementApi = async () => {
+        const response = await fetch(
+          "https://next-js-quote-app.vercel.app/api/hello2"
+        );
+        const movies = await response.json();
+        console.log(movies);
       };
+      // const OrderPlacementApi = (amount, userId) => {
+      //   const apiUrl =
+      //     "https://apihk.mch.weixin.qq.com/v3/global/transactions/jsapi";
+      //   const authToken =
+      //     'WECHATPAY2-SHA256-RSA2048 mchid="1487925572",serial_no="3139B59E7F95B5512AF3A788145FA96F172FDF34",nonce_str="0giXXPtmmVil7QdFkUbPqI2vGfnk2dsU",timestamp="1712126971",signature="3iJySTphrAdIJuGAM+U9eK83YB+M+zxwhFCIVe1GR2yb8xD+MJpT6AkfHAspBaWMZUIvyhiH42E2yvWEfPMt/O1C4BTh6ekr/fqy0xrDeo3yNUL4vw29VYN8Q/pl2jTE7bC+NZebqUZ5nc9InQymyU0yq/P1+/UZycwFhjBYe7P/Lp7sNkrD40n8qqtXVMLae76SXTt7yh3sL9JupLHP7oenl68NE7Ca5fBJxdOIFcXFXUe/86RnDUlmYl+mhquESCeUQA3FblbTYRamHCSZeQ+RsaQBn+ilCpAhv6vUsDc3oI3mCZKFs1biRp0B8CUWJ55ZF8UW0+DrBwVah1OnjA=="';
+      //   const postData = {
+      //     sp_appid: "wxdff39e214f645db5",
+      //     sp_mchid: "1487925572",
+      //     sub_mchid: "613490525",
+      //     out_trade_no: "YX202111100065JSAPI",
+      //     merchant_category_code: "5814",
+      //     notify_url:
+      //       "https://digital.canadiabank.com/cnb/sit/RefundNotification",
+      //     trade_type: "JSAPI",
+      //     amount: {
+      //       total: amount,
+      //       currency: "CNY",
+      //     },
+      //     payer: {
+      //       sp_openid: userId,
+      //     },
+      //     description: "QR code test",
+      //   };
+
+      //   const requestOptions = {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: authToken,
+      //     },
+      //     body: JSON.stringify(postData),
+      //   };
+
+      //   fetch(apiUrl, requestOptions)
+      //     .then((response) => {
+      //       return response.json();
+      //     })
+      //     .then((data) => {
+      //       console.log("Data from API:", data);
+      //     })
+      //     .catch((error) => {
+      //       console.error("Error fetching data:", error);
+      //     });
+
+      //   return "wx03143945650823c46d6545e03ba3660000";
+      // };
     </script>
   </body>
 </html>
