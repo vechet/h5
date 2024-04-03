@@ -55,11 +55,11 @@
     <script>
       //variables
       var appId = "wxdff39e214f645db5";
-      var timeStamp = "1712127865";
-      var nonceStr = "AMPDGQ74i3Lar9LzwFVbf4EGTchnWNHB";
-      var prepayId = "wx03150415038577b3aa4cc6e8e89d440000";
+      var timeStamp = "1712127957";
+      var nonceStr = "OYZmDtbFYxzTvj2KoizYBCANLqDuICXw";
+      var prepayId = "wx0315054889495463387ccf94c1d1eb0000";
       var paySign =
-        "LiQS91JEpLQ1BwPrtIUSnAjuxjiugRPO3A8nY6fR4MhMF0nryQ2pSJE708ASmpE08SSC39mGK3CTgsUUxvZZMOVMtuooxGHkcb38KiKVgJ1fOHs9A3vLd/KS+40gm2B4jXchR1HqD+ABrDbfGkfVBTGfzQdrOKI4ZTKIC/acQLDqZVITN8kt3H2+8xSrLk649f2YjLGTKojma94yjAtwfKRVzcjatep/EPYevlSPJ9ZiQ5Uuzkdx9AuW2VveonU5iT8e3rHaQoNwwDobe9CeVt1Q230QNo9xjM4pxbl4LSDbKRC33H8Uffe1sQHkdh2pgerJ1K2FCCr/Fcfw9vglzQ==";
+        "57eDbBC32XvCH/9z+Mq1GbRuRVdYAgRQhqddNRJE8rgr9u4lkXP+DB0xDbMPUouUXFwWxYHrbalycwYfQfGlOS/udq5X2FmZk7VX4Kk1eDtijwmSOQw61RZWSaHzTzJVpHBOF2kW1iLeUJ4KNQXRt7lDxW1EdiBkh3hvLdGeSWqCx6maihq1ciiB7Ww2DOrBDadW9cBMj5Cap9im4NvOyEBn02BEgaB2kTHlN8cELuDYx5QnZHe9qi9eM/S+unoVBgEWA34evc6Uvu7NcI+niknr36pBGnw2LgHfbJvsrYCdlirGtUUKOuXrRTUb0DLIqBXfNTLiPhP3A3kAKdUHzA==";
 
       //validate amount
       document.getElementById("amount").addEventListener("input", () => {
@@ -88,7 +88,6 @@
               document.getElementById("div-message").style.display = "block";
             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
               //Payment cancelled
-              alert("Payment cancelled");
             } else if (res.err_msg == "get_brand_wcpay_request:fail") {
               //Payment failed
             }
