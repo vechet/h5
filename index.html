@@ -162,8 +162,10 @@ yThT5Ee6mPn01hDlXuVM7faV5w==
         const sign = new KJUR.crypto.Signature({ alg: "SHA256withRSA" });
         sign.init(privateKey);
         sign.updateString(message);
-
-        console.log(sign.sign());
+        const encoder = new TextEncoder();
+        const byteArray = encoder.encode(sign.sign());
+        const signature = btoa(String.fromCharCode(...byteArray));
+        return signature;
       };
 
       //submit payment
