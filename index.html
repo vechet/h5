@@ -11,18 +11,76 @@
     />
   </head>
   <body>
+    <div class="container mt-4">
+      <div class="mb-5 d-flex flex-column align-items-center">
+        <div
+          style="width: 50px; height: 50px"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="https://marketplace.canva.com/EAFauoQSZtY/1/0/1600w/canva-brown-mascot-lion-free-logo-qJptouniZ0A.jpg"
+            class="img-fluid"
+            style="max-width: 100%; max-height: 100%; border-radius: 10px"
+          />
+        </div>
+        <p class="text-center mb-0">You're about to pay</p>
+        <h5 class="text-center">Canadia bank merchant</h5>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            id="amount"
+            name="amount"
+            required
+            placeholder="Enter amount"
+            aria-label="Amount"
+            aria-describedby="basic-addon2"
+            autofocus
+          />
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">$</span>
+          </div>
+        </div>
+      </div>
+      <button id="pay" class="btn btn-primary btn-block" disabled>Pay</button>
+    </div>
+
     <script>
+      //focus on amount input
+      document.getElementById("amount").focus();
+      document.getElementById("amount").blur();
+
+      //validate amount
+      document.getElementById("amount").addEventListener("input", function () {
+        var amount = document.getElementById("amount").value;
+        if (amount > 0) {
+          document.getElementById("pay").removeAttribute("disabled");
+        } else {
+          document.getElementById("pay").setAttribute("disabled", "disabled");
+        }
+      });
+
+      var amount = document.getElementById("amount").value;
+      var appId = "wxdff39e214f645db5";
+      var timeStamp = "1712124292";
+      var nonceStr = "DXFSfr003UgM8crww9YD0sCJtVnktRb6";
+      var prepayId = "wx03140445798595ce2abd51443bae050000";
+      var signType = "RSA";
+      var paySign =
+        "bIQeOrQ8KIxh6moLZDRKecK70o3Hhq7IuCTYJKeRxw55Vtit98nxtn3hpeAznFmfgN4yaUw4pIWZc6oFI6j5k95KURvv5RrCygHal9XP/MGurMwCvTY9ZHQoP0K5+UyRtTXYA8r7Em5ix74H4aat/VaHyEcDe606qIo3HSlSAa3mApjJKGm1hGz/et3RGVqPZFASzsQbjHZApL3SElKl9sH1g+oWDhOy6gWbq0ntEMf1+JoVNBqOY+AE5BFuz2bbWere87bpQKSNfejpDz6L4u+gdbBsXSksjxwhhmEcnwdGjJ+yevO+RYwshLWgWZQncJbkApCz4ZbNtZMeZaVbEw==";
+
       function onBridgeReady() {
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
-            appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
-            timeStamp: "1712124292", //Timestamp, number of seconds since 1970
-            nonceStr: "DXFSfr003UgM8crww9YD0sCJtVnktRb6", //Random string
-            package: "prepay_id=wx03140445798595ce2abd51443bae050000",
-            signType: "RSA", //WeChat signature method:
-            paySign:
-              "bIQeOrQ8KIxh6moLZDRKecK70o3Hhq7IuCTYJKeRxw55Vtit98nxtn3hpeAznFmfgN4yaUw4pIWZc6oFI6j5k95KURvv5RrCygHal9XP/MGurMwCvTY9ZHQoP0K5+UyRtTXYA8r7Em5ix74H4aat/VaHyEcDe606qIo3HSlSAa3mApjJKGm1hGz/et3RGVqPZFASzsQbjHZApL3SElKl9sH1g+oWDhOy6gWbq0ntEMf1+JoVNBqOY+AE5BFuz2bbWere87bpQKSNfejpDz6L4u+gdbBsXSksjxwhhmEcnwdGjJ+yevO+RYwshLWgWZQncJbkApCz4ZbNtZMeZaVbEw==", //WeChat signature
+            appId: appId,
+            timeStamp: timeStamp,
+            nonceStr: nonceStr,
+            package: "prepay_id=" + prepayId,
+            signType: signType,
+            paySign: paySign,
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
@@ -30,19 +88,24 @@
           }
         );
       }
-      if (typeof WeixinJSBridge == "undefined") {
-        if (document.addEventListener) {
-          document.addEventListener(
-            "WeixinJSBridgeReady",
-            onBridgeReady,
-            false
-          );
-        } else if (document.attachEvent) {
-          document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-          document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+
+      //submit payment
+      document.getElementById("pay").addEventListener("click", pay);
+      function pay() {
+        if (typeof WeixinJSBridge == "undefined") {
+          if (document.addEventListener) {
+            document.addEventListener(
+              "WeixinJSBridgeReady",
+              onBridgeReady,
+              false
+            );
+          } else if (document.attachEvent) {
+            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+          }
+        } else {
+          onBridgeReady();
         }
-      } else {
-        onBridgeReady();
       }
     </script>
   </body>
