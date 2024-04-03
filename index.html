@@ -50,7 +50,8 @@
     <script>
       //focus on amount input
       document.getElementById("amount").focus();
-      document.getElementById("amount").blur();
+
+      var amount = document.getElementById("amount").value;
 
       //validate amount
       document.getElementById("amount").addEventListener("input", function () {
@@ -62,25 +63,17 @@
         }
       });
 
-      var amount = document.getElementById("amount").value;
-      var appId = "wxdff39e214f645db5";
-      var timeStamp = "1712117883";
-      var nonceStr = "dOJANS14EXozEfMgKog6DdtgYHGqGqLN";
-      var prepayId = "wx031217503519817c5ee57cab8ed5ed0000";
-      var signType = "RSA";
-      var paySign =
-        "EGcRmvAuLQ1X7w/Y3M8Q9X+/Z4EvDm22/a800Ufj1Fex9MzIa6Et8t9VS2j9fyznp7ATwQz6CuHoYkXlgn+jMgh5mCGNLiTDx7uAD3DOAm97bRZXGoFNldznApl9wm1v/H6uRPaIldToZXUpOxDr9IpL/P8IIrdcbQdHm2QJBxg9cBba13wGHgyfo/hgvLV0Y5vRJA0AHzE1DAyFnDBdEG3ilL2oqeh71zthPypRPofChkKAeHWHSx+6kjYled3ocYTuDqpYrKG+7h2WNUpLT+pZ0AY8RUpilxDZfztYdbOWnX9j8ss8lxcb3eLvwvbsTaq2JKlIK3Mh1OMtRyXCEA=="; //WeChat signature
-
       function onBridgeReady() {
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
-            appId: appId,
-            timeStamp: timeStamp,
-            nonceStr: nonceStr,
-            package: "prepay_id=" + prepayId,
-            signType: signType,
-            paySign: paySign,
+            appId: "wxdff39e214f645db5", //Official Account name, passed by the merchant
+            timeStamp: "1712117883", //Timestamp, number of seconds since 1970
+            nonceStr: "dOJANS14EXozEfMgKog6DdtgYHGqGqLN", //Random string
+            package: "prepay_id=wx031217503519817c5ee57cab8ed5ed0000",
+            signType: "RSA", //WeChat signature method:
+            paySign:
+              "EGcRmvAuLQ1X7w/Y3M8Q9X+/Z4EvDm22/a800Ufj1Fex9MzIa6Et8t9VS2j9fyznp7ATwQz6CuHoYkXlgn+jMgh5mCGNLiTDx7uAD3DOAm97bRZXGoFNldznApl9wm1v/H6uRPaIldToZXUpOxDr9IpL/P8IIrdcbQdHm2QJBxg9cBba13wGHgyfo/hgvLV0Y5vRJA0AHzE1DAyFnDBdEG3ilL2oqeh71zthPypRPofChkKAeHWHSx+6kjYled3ocYTuDqpYrKG+7h2WNUpLT+pZ0AY8RUpilxDZfztYdbOWnX9j8ss8lxcb3eLvwvbsTaq2JKlIK3Mh1OMtRyXCEA==", //WeChat signature
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
