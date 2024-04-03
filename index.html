@@ -89,6 +89,11 @@
               //Payment successful
               document.getElementById("div-payment").style.display = "none";
               document.getElementById("div-message").style.display = "block";
+            } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+              //Payment cancelled
+              alert("Payment cancelled");
+            } else if (res.err_msg == "get_brand_wcpay_request:fail") {
+              //Payment failed
             }
           }
         );
