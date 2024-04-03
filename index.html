@@ -174,20 +174,21 @@ yThT5Ee6mPn01hDlXuVM7faV5w==
         nonceStr = generateNonceStr();
         timestamp = generateTimestamp();
         paySign = getPaySign();
-        // if (typeof WeixinJSBridge == "undefined") {
-        //   if (document.addEventListener) {
-        //     document.addEventListener(
-        //       "WeixinJSBridgeReady",
-        //       onBridgeReady,
-        //       false
-        //     );
-        //   } else if (document.attachEvent) {
-        //     document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-        //     document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-        //   }
-        // } else {
-        //   onBridgeReady();
-        // }
+
+        if (typeof WeixinJSBridge == "undefined") {
+          if (document.addEventListener) {
+            document.addEventListener(
+              "WeixinJSBridgeReady",
+              onBridgeReady,
+              false
+            );
+          } else if (document.attachEvent) {
+            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+          }
+        } else {
+          onBridgeReady();
+        }
       });
     </script>
   </body>
