@@ -54,7 +54,6 @@
 
     <script>
       //variables
-      var amount = document.getElementById("amount").value;
       var appId = "wxdff39e214f645db5";
       var timeStamp = "1712125712";
       var nonceStr = "uoVgJlg8WlqvPJ5e3fHnn1H2HiqoetfK";
@@ -67,8 +66,7 @@
 
       //validate amount
       document.getElementById("amount").addEventListener("input", () => {
-        var amount = document.getElementById("amount").value;
-        if (amount > 0) {
+        if (document.getElementById("amount").value > 0) {
           document.getElementById("pay").removeAttribute("disabled");
         } else {
           document.getElementById("pay").setAttribute("disabled", "disabled");
