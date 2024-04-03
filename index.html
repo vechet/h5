@@ -64,12 +64,12 @@
 
       var amount = document.getElementById("amount").value;
       var appId = "wxdff39e214f645db5";
-      var timeStamp = "1712124292";
-      var nonceStr = "DXFSfr003UgM8crww9YD0sCJtVnktRb6";
-      var prepayId = "wx03140445798595ce2abd51443bae050000";
+      var timeStamp = "1712124527";
+      var nonceStr = "DGkRVaOSH5tsiDxYgtCuO1XkJG3QXwry";
+      var prepayId = "wx03140837174521eadedf299ba65d280000";
       var signType = "RSA";
       var paySign =
-        "bIQeOrQ8KIxh6moLZDRKecK70o3Hhq7IuCTYJKeRxw55Vtit98nxtn3hpeAznFmfgN4yaUw4pIWZc6oFI6j5k95KURvv5RrCygHal9XP/MGurMwCvTY9ZHQoP0K5+UyRtTXYA8r7Em5ix74H4aat/VaHyEcDe606qIo3HSlSAa3mApjJKGm1hGz/et3RGVqPZFASzsQbjHZApL3SElKl9sH1g+oWDhOy6gWbq0ntEMf1+JoVNBqOY+AE5BFuz2bbWere87bpQKSNfejpDz6L4u+gdbBsXSksjxwhhmEcnwdGjJ+yevO+RYwshLWgWZQncJbkApCz4ZbNtZMeZaVbEw==";
+        "IYdKWBk/F0uWpGH3t0etkcIiSHJMYMAy8xhAEdZm2UWd/oVIxCt97sRRD8i1fPobogwOX1R832MwVV0XNk4d3chzbTlCQtmrcDjcbqbvHSwiLoC/0CY2Fmkn1Fu0htwfJH7ZbBlB/VqLgGtyXaTSRQuYXAmzUqtiFve6TugrkNDlN1kZ8Bg1z8URhvl489pRab2jnk1pXCin4VVS/9iZp+fHokBFSzmeMQoxkaktNjPHngHzpOCPpxVnqsyfIJXQmu63XCoCe5qldyuQmzNcCOT9s3Rinos8O+l571bt9pXKtZvViGwMIPJ/2OShH4vddUFjuuraRbjGo3qRSYwiTA==";
 
       function onBridgeReady() {
         WeixinJSBridge.invoke(
@@ -84,6 +84,7 @@
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
+              alert("Payment successful");
             } // The above method can be used to judge the value returned from the frontend. WeChat team reminds you that res.err_msg will return OK after users make payment successfully, but this value is not guaranteed to be absolute reliable.
           }
         );
