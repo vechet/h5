@@ -26,36 +26,41 @@
         <p class="text-center mb-0">You're about to pay</p>
         <h5 class="text-center">Canadia bank merchant</h5>
       </div>
-      <div class="form-group">
-        <div class="input-group">
-          <input
-            type="number"
-            class="form-control"
-            id="amount"
-            name="amount"
-            required
-            placeholder="Enter amount"
-            aria-label="Amount"
-            aria-describedby="basic-addon2"
-            autofocus
-          />
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">$</span>
+      <div class="mb-5 d-flex flex-column align-items-center">
+        <div id="div-message" style="display: none">Payment successful</div>
+      </div>
+      <div id="div-payment" style="display: block">
+        <div class="form-group">
+          <div class="input-group">
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              name="amount"
+              required
+              placeholder="Enter amount"
+              aria-label="Amount"
+              aria-describedby="basic-addon2"
+              autofocus
+            />
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">$</span>
+            </div>
           </div>
         </div>
+        <button id="pay" class="btn btn-primary btn-block" disabled>Pay</button>
       </div>
-      <button id="pay" class="btn btn-primary btn-block" disabled>Pay</button>
     </div>
 
     <script>
       //variables
       var amount = document.getElementById("amount").value;
       var appId = "wxdff39e214f645db5";
-      var timeStamp = "1712125152";
-      var nonceStr = "DCU7ZhbNwo4CKbMOwVyvKtaAGqztwEVq";
-      var prepayId = "wx03141902108829147f675123e75ae60000";
+      var timeStamp = "1712125712";
+      var nonceStr = "uoVgJlg8WlqvPJ5e3fHnn1H2HiqoetfK";
+      var prepayId = "wx0314282297960052ba23f7ff25533a0000";
       var paySign =
-        "DMVisyqsDmJgNUJiGoOLnWtsoT+1fE1jcJJs6H++A+oua9aoh1H4UBm+1MQ3qH/uEJY549WvNZajZHY65WhFBk8D2v7DlDLKstFC1VbF8qSmX787XjiZMWpFgLxZOQBzfNfel/wwNJqb6iSNOg5HIB8o2kKS8lou3MxyN+PHMsRi9wC2cNOsjedsAzIcN0BTCWVtzcqDmkMpykZJiRGRX9GDVcXLam7eltiAIpgJq1kI3hAMO3pcaDTqYraXO6KE+yz8HweqokKaCUY+XWRazutwuLnL5/ihr3YY2f+agR3zxXpNdi84uQ7zzUXGdJi6zi0iBXwwZrAm22OZpj6hgA==";
+        "ZmyLj4mAxoNTYTIiIrqFod8R3uT8Nqmdi/jnekaxZotmz6JbRL5gh1RnsEDRSwn2fMP+2PrTKUeqj3d34hNxudZA7w+YqTVOO5cjVhHyInBt7YwAeqdQWWOfxX6S3D+R855yPcfKGiJdsJv5UpvtCc2STIjfQ+nlRvIgOj/Zyre2bC6Bk1wJNKDFaBKDvbn7vPkqUs2v6i93Vdyf+GIG6EwBxozL9/3SQX33ZYU8w79eO8NUn65U3geGhr7YA9OxSisTSycjLHrjDzd5WSV2rLD/CLflxHU25Zcma+t2bENVXx05adHdO1xueeaXfiCHKJ0RVJ9uygKJrGrtl9qShA==";
 
       //focus on amount input
       document.getElementById("amount").focus();
@@ -83,7 +88,9 @@
           },
           function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
-              //alert("Payment successful");
+              //Payment successful
+              document.getElementById("div-payment").style.display = "none";
+              document.getElementById("div-message").style.display = "block";
             }
           }
         );
