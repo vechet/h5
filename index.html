@@ -57,7 +57,7 @@
       var appId = "wxdff39e214f645db5";
       var timeStamp = "1712125712";
       var nonceStr = "uoVgJlg8WlqvPJ5e3fHnn1H2HiqoetfK";
-      var prepayId = "wx0314282297960052ba23f7ff25533a0000";
+      var prepayId = "";
       var paySign =
         "ZmyLj4mAxoNTYTIiIrqFod8R3uT8Nqmdi/jnekaxZotmz6JbRL5gh1RnsEDRSwn2fMP+2PrTKUeqj3d34hNxudZA7w+YqTVOO5cjVhHyInBt7YwAeqdQWWOfxX6S3D+R855yPcfKGiJdsJv5UpvtCc2STIjfQ+nlRvIgOj/Zyre2bC6Bk1wJNKDFaBKDvbn7vPkqUs2v6i93Vdyf+GIG6EwBxozL9/3SQX33ZYU8w79eO8NUn65U3geGhr7YA9OxSisTSycjLHrjDzd5WSV2rLD/CLflxHU25Zcma+t2bENVXx05adHdO1xueeaXfiCHKJ0RVJ9uygKJrGrtl9qShA==";
 
@@ -81,7 +81,7 @@
             signType: "RSA",
             paySign: paySign,
           },
-          function (res) {
+          (res) => {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
               //Payment successful
               document.getElementById("div-payment").style.display = "none";
@@ -98,6 +98,12 @@
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
+        //create order
+        prepayId = OrderPlaceApi();
+        if (prepayId == "") {
+          return;
+        }
+
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
             document.addEventListener(
@@ -113,6 +119,10 @@
           onBridgeReady();
         }
       });
+
+      const OrderPlaceApi = () => {
+        return "wx0314282297960052ba23f7ff25533a0000";
+      };
     </script>
   </body>
 </html>
