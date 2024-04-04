@@ -86,11 +86,11 @@
 
       const onBridgeReady = () => {
         alert("still paying...", {
-          appId: accountId,
-          timeStamp: timeStamp,
-          nonceStr: nonceStr,
-          package: "prepay_id=" + prepayId,
-          paySign: paySign,
+          appId,
+          timeStamp,
+          nonceStr,
+          prepayId,
+          paySign,
         });
 
         WeixinJSBridge.invoke(
@@ -119,14 +119,7 @@
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
-        alert("paying...", {
-          appId: "76767676767",
-          timeStamp: timeStamp,
-          nonceStr: nonceStr,
-          package: "prepay_id=" + prepayId,
-          signType: "RSA",
-          paySign: paySign,
-        });
+        alert("paying...", { appId, timeStamp, nonceStr, prepayId, paySign });
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
             document.addEventListener(
