@@ -85,6 +85,7 @@
       });
 
       const onBridgeReady = () => {
+        alert("onBridgeReady", prepayId);
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
