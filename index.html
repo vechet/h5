@@ -9,6 +9,8 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <script src="forge.js"></script>
+    <script src="util.js"></script>
   </head>
   <body>
     <div class="container mt-4">
@@ -54,12 +56,23 @@
 
     <script>
       //variables
-      var appId = "wxdff39e214f645db5";
-      var timeStamp = "1712137025";
-      var nonceStr = "itH4SViTtKSHBzAPFcUMzhESXm8t6YEZ";
-      var prepayId = "wx0317365708422924c533fb67f466760000";
-      var paySign =
-        "6lbLoKB7LxvLEH/QbfbA6PCGOXQEMBMuh5N7YIDB24w/3hNIIxijHI+X8+oI9hS/gRR0gJQj/pOtlSn6qgbLwSGAQxnsEbLTjPyzDeIns1B60USeDgFzBx5eguI5poMZ0+62oneGQDG5dBJKqeciQvE9gw1YKR3P8INs9pfijaZ3vamNyspc6aQoredkCmZdeOTfJwgPElLXXLphu1Qbz7xZgCMxfnIghmiMQOK0jBIjmwMsASecucKSDlhDXEeWvAmutwYydQqLdEA0lp6FA9WDeRWXfoR9NNtAnqB+YpoxP7fb2Qw0PGs8/qKJgj2+iKTq14D/gJILXZVekmsd1g==";
+      var accountId = "wxdff39e214f645db5";
+      var timeStamp = generateTimestamp();
+      var nonceStr = generateNonceStr();
+      var prepayId = "wx04093442084826d3f800a8b382c32e0000";
+
+      var message =
+        accountId +
+        "\n" +
+        timeStamp +
+        "\n" +
+        nonceStr +
+        "\n" +
+        "prepay_id=" +
+        prepayId +
+        "\n";
+
+      var paySign = generatePaySign(message);
 
       //validate amount
       document.getElementById("amount").addEventListener("input", () => {
