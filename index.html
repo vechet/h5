@@ -60,7 +60,7 @@
       var accountId = "wxdff39e214f645db5";
       var timeStamp = generateTimestamp();
       var nonceStr = generateNonceStr();
-      var prepayId = "wx0410024629856797aac58c1c1af9750000";
+      var prepayId = "";
 
       var message =
         accountId +
@@ -109,8 +109,20 @@
         );
       };
 
+      //call api to create order
+      const orderPlacementApi = (userId, amount) => {
+        return "wx0410024629856797aac58c1c1af9750000";
+      };
+
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
+        var amount = document.getElementById("amount").value;
+        var userId = "oEd0BwrC72_318e7AnQlzl0hnSYo";
+        prepayId = orderPlacementApi(amount, userId);
+        if (prepayId == "") {
+          return;
+        }
+
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
             document.addEventListener(
