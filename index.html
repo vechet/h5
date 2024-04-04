@@ -85,14 +85,6 @@
       });
 
       const onBridgeReady = () => {
-        alert("still paying...", {
-          accountId,
-          timeStamp,
-          nonceStr,
-          prepayId,
-          paySign,
-        });
-
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
@@ -119,13 +111,6 @@
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
-        alert("paying...", {
-          accountId,
-          timeStamp,
-          nonceStr,
-          prepayId,
-          paySign,
-        });
         if (typeof WeixinJSBridge == "undefined") {
           if (document.addEventListener) {
             document.addEventListener(
