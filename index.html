@@ -56,6 +56,17 @@
     </div>
 
     <script>
+      //get code and state from URL
+      const queryString = window.location.search;
+      if (queryString !== "") {
+        const currentUrl = window.location.href;
+        const urlParams = new URLSearchParams(new URL(currentUrl).search);
+        const code = urlParams.get("code");
+        const state = urlParams.get("state");
+        console.log("Code:", code);
+        console.log("State:", state);
+      }
+
       //variables
       var accountId = "wxdff39e214f645db5";
       var timeStamp = generateTimestamp();
