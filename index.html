@@ -58,7 +58,9 @@
     <script>
       //get code and state from URL
       const queryString = window.location.search;
+      console.log("Query string:", queryString);
       if (queryString !== "") {
+        console.log("Query string is not empty");
         const currentUrl = window.location.href;
         const urlParams = new URLSearchParams(new URL(currentUrl).search);
         const code = urlParams.get("code");
