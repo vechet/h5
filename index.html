@@ -42,9 +42,6 @@
               name="amount"
               required
               placeholder="Enter amount"
-              aria-label="Amount"
-              aria-describedby="basic-addon2"
-              autofocus
             />
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">$</span>
@@ -58,9 +55,7 @@
     <script>
       //get code and state from URL
       const queryString = window.location.search;
-      console.log("Query string:", queryString);
-      if (queryString !== "") {
-        console.log("Query string is not empty");
+      if (queryString != "") {
         const currentUrl = window.location.href;
         const urlParams = new URLSearchParams(new URL(currentUrl).search);
         const code = urlParams.get("code");
