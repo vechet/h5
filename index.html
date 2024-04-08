@@ -63,25 +63,6 @@
         console.log("State:", state);
       }
 
-      //variables
-      var accountId = "wxdff39e214f645db5";
-      var timeStamp = generateTimestamp();
-      var nonceStr = generateNonceStr();
-      var prepayId = "wx081139312400347ace560e686d8a5b0000";
-
-      var message =
-        accountId +
-        "\n" +
-        timeStamp +
-        "\n" +
-        nonceStr +
-        "\n" +
-        "prepay_id=" +
-        prepayId +
-        "\n";
-
-      var paySign = generatePaySign(message);
-
       //validate amount
       document.getElementById("amount").addEventListener("input", () => {
         if (document.getElementById("amount").value > 0) {
@@ -91,7 +72,25 @@
         }
       });
 
-      const onBridgeReady = () => {
+      const onBridgeReady = (prepayId) => {
+        //variables
+        var appId = "wxdff39e214f645db5";
+        var timeStamp = generateTimestamp();
+        var nonceStr = generateNonceStr();
+
+        var message =
+          accountId +
+          "\n" +
+          timeStamp +
+          "\n" +
+          nonceStr +
+          "\n" +
+          "prepay_id=" +
+          prepayId +
+          "\n";
+
+        var paySign = generatePaySign(message);
+
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
@@ -119,7 +118,7 @@
       const orderPlacementApi = (openId, amount) => {
         //request body
         var req = {
-          sp_appid: accountId,
+          sp_appid: "wxdff39e214f645db5",
           sp_mchid: "1487925572",
           sub_mchid: "613490525",
           out_trade_no: "YX202111100058JSAPI",
@@ -147,31 +146,16 @@
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
-        // //get user token
-        // var openId = getUserToken();
+        //get user token
+        var openId = getUserToken();
 
-        // //call order api
-        // var amount = document.getElementById("amount").value;
-        // prepayId = orderPlacementApi(openId, amount);
+        //call order api
+        var amount = document.getElementById("amount").value;
+        prepayId = orderPlacementApi(openId, amount);
 
         //confirm payment
-        if (typeof WeixinJSBridge == "undefined") {
-          alert("WeixinJSBridge is undefined");
-          if (document.addEventListener) {
-            alert("WeixinJSBridge is undefined 2");
-            document.addEventListener(
-              "WeixinJSBridgeReady",
-              onBridgeReady,
-              false
-            );
-          } else if (document.attachEvent) {
-            alert("WeixinJSBridge is undefined 3");
-            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
-            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
-          }
-        } else {
-          alert("WeixinJSBridge is not undefined");
-          onBridgeReady();
+        if (typeof WeixinJSBridge != "undefined") {
+          onBridgeReady(prepayId);
         }
       });
     </script>
