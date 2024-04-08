@@ -63,6 +63,25 @@
         console.log("State:", state);
       }
 
+      //variables
+      var accountId = "wxdff39e214f645db5";
+      var timeStamp = generateTimestamp();
+      var nonceStr = generateNonceStr();
+      var prepayId = "";
+
+      var message =
+        accountId +
+        "\n" +
+        timeStamp +
+        "\n" +
+        nonceStr +
+        "\n" +
+        "prepay_id=" +
+        prepayId +
+        "\n";
+
+      var paySign = generatePaySign(message);
+
       //validate amount
       document.getElementById("amount").addEventListener("input", () => {
         if (document.getElementById("amount").value > 0) {
@@ -72,25 +91,7 @@
         }
       });
 
-      const onBridgeReady = (prepayId) => {
-        //variables
-        var appId = "wxdff39e214f645db5";
-        var timeStamp = generateTimestamp();
-        var nonceStr = generateNonceStr();
-
-        var message =
-          accountId +
-          "\n" +
-          timeStamp +
-          "\n" +
-          nonceStr +
-          "\n" +
-          "prepay_id=" +
-          prepayId +
-          "\n";
-
-        var paySign = generatePaySign(message);
-
+      const onBridgeReady = () => {
         WeixinJSBridge.invoke(
           "getBrandWCPayRequest",
           {
@@ -118,7 +119,7 @@
       const orderPlacementApi = (openId, amount) => {
         //request body
         var req = {
-          sp_appid: "wxdff39e214f645db5",
+          sp_appid: accountId,
           sp_mchid: "1487925572",
           sub_mchid: "613490525",
           out_trade_no: "YX202111100058JSAPI",
@@ -154,8 +155,19 @@
         prepayId = orderPlacementApi(openId, amount);
 
         //confirm payment
-        if (typeof WeixinJSBridge != "undefined") {
-          onBridgeReady(prepayId);
+        if (typeof WeixinJSBridge == "undefined") {
+          if (document.addEventListener) {
+            document.addEventListener(
+              "WeixinJSBridgeReady",
+              onBridgeReady,
+              false
+            );
+          } else if (document.attachEvent) {
+            document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+            document.attachEvent("onWeixinJSBridgeReady", onBridgeReady);
+          }
+        } else {
+          onBridgeReady();
         }
       });
     </script>
