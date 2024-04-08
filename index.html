@@ -59,15 +59,15 @@
         const urlParams = new URLSearchParams(new URL(currentUrl).search);
         const code = urlParams.get("code");
         const state = urlParams.get("state");
-        console.log("Code:", code);
-        console.log("State:", state);
+        // console.log("Code:", code);
+        // console.log("State:", state);
       }
 
       //variables
       var accountId = "wxdff39e214f645db5";
       var timeStamp = generateTimestamp();
       var nonceStr = generateNonceStr();
-      var prepayId = "";
+      var prepayId = "wx081139312400347ace560e686d8a5b0000";
 
       var message =
         accountId +
@@ -116,43 +116,43 @@
         );
       };
 
-      const orderPlacementApi = (openId, amount) => {
-        //request body
-        var req = {
-          sp_appid: accountId,
-          sp_mchid: "1487925572",
-          sub_mchid: "613490525",
-          out_trade_no: "YX202111100058JSAPI",
-          merchant_category_code: "5814",
-          notify_url:
-            "https://digital.canadiabank.com/cnb/sit/RefundNotification",
-          trade_type: "JSAPI",
-          amount: {
-            total: amount,
-            currency: "CNY",
-          },
-          payer: {
-            sp_openid: openId,
-          },
-          description: "QR code test",
-        };
+      // const orderPlacementApi = (openId, amount) => {
+      //   //request body
+      //   var req = {
+      //     sp_appid: accountId,
+      //     sp_mchid: "1487925572",
+      //     sub_mchid: "613490525",
+      //     out_trade_no: "YX202111100058JSAPI",
+      //     merchant_category_code: "5814",
+      //     notify_url:
+      //       "https://digital.canadiabank.com/cnb/sit/RefundNotification",
+      //     trade_type: "JSAPI",
+      //     amount: {
+      //       total: amount,
+      //       currency: "CNY",
+      //     },
+      //     payer: {
+      //       sp_openid: openId,
+      //     },
+      //     description: "QR code test",
+      //   };
 
-        return "wx081139312400347ace560e686d8a5b0000";
-      };
+      //   return "wx081139312400347ace560e686d8a5b0000";
+      // };
 
-      const getUserToken = () => {
-        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdff39e214f645db5&redirect_uri=https://h5-sage.vercel.app/index.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
-        return "oEd0BwrC72_318e7AnQlzl0hnSYo";
-      };
+      // const getUserToken = () => {
+      //   //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdff39e214f645db5&redirect_uri=https://h5-sage.vercel.app/index.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
+      //   return "oEd0BwrC72_318e7AnQlzl0hnSYo";
+      // };
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
-        //get user token
-        var openId = getUserToken();
+        // //get user token
+        // var openId = getUserToken();
 
-        //call order api
-        var amount = document.getElementById("amount").value;
-        prepayId = orderPlacementApi(openId, amount);
+        // //call order api
+        // var amount = document.getElementById("amount").value;
+        // prepayId = orderPlacementApi(openId, amount);
 
         //confirm payment
         if (typeof WeixinJSBridge == "undefined") {
