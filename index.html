@@ -17,11 +17,11 @@
     <div class="container mt-4">
       <div class="mb-5 d-flex flex-column align-items-center">
         <div
-          style="width: 50px; height: 50px"
+          style="width: 100px; height: 50px"
           class="d-flex justify-content-center align-items-center"
         >
           <img
-            src="https://marketplace.canva.com/EAFauoQSZtY/1/0/1600w/canva-brown-mascot-lion-free-logo-qJptouniZ0A.jpg"
+            src="https://canaconnect.canadiabank.com/assets/logo-BV_QjXSa.png"
             class="img-fluid"
             style="max-width: 100%; max-height: 100%; border-radius: 10px"
           />
@@ -67,7 +67,7 @@
       var accountId = "wxdff39e214f645db5";
       var timeStamp = generateTimestamp();
       var nonceStr = generateNonceStr();
-      var prepayId = "wx08180850073846e80d7ec710a730710000";
+      var prepayId = "wx18152746807191ad322a75a1bd458f0001";
 
       var message =
         accountId +
@@ -103,6 +103,7 @@
             paySign: paySign,
           },
           function (res) {
+            console.log(res);
             if (res.err_msg == "get_brand_wcpay_request:ok") {
               //Payment successful
               document.getElementById("div-payment").style.display = "none";
@@ -147,6 +148,7 @@
 
       //submit payment
       document.getElementById("pay").addEventListener("click", () => {
+        console.log("Pay button clicked");
         // //get user token
         // var openId = getUserToken();
 
